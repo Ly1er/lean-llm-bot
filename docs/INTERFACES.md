@@ -67,7 +67,7 @@ w.write({ section, type, content, importance, ts });
 ```
 
 行为：
-- 去重忽略标点/空白；`这些人` 段按开头的 QQ/用户 ID 覆盖更新
+- 去重忽略标点/空白；`这些人` 段按开头的用户 ID 覆盖更新
 - 写前备份 `MEMORY.md.bak_时间戳`，保留最近 10 份
 - tmp + rename 原子写；中期超过 `maxMid` 裁最旧
 - 成功写入后追加 `pending.jsonl`（仅追加，方便回放）

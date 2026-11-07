@@ -36,7 +36,7 @@ writeFileSync(
   ['- 09:00 [私聊]用户A：早', '- 09:05 [私聊]用户A：今天有点困', '- 09:06 [群]用户B：部署卡住了'].join('\n') + '\n',
 );
 
-// 官方单价（元/token）：缓存命中 2e-8、未命中 1e-6、输出 4e-6
+// 账单单价（元/token，按 DeepSeek 公开计费口径）：缓存命中 2e-8、未命中 1e-6、输出 4e-6
 const P = { hit: 2e-8, miss: 1e-6, out: 4e-6 };
 const cost = (hit, miss, out) => hit * P.hit + miss * P.miss + out * P.out;
 

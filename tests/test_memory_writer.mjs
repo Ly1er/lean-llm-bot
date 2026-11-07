@@ -41,7 +41,7 @@ ok('标点差异判重', dup.ok === false && dup.reason === 'duplicate');
 console.log('memory-writer: 好感度覆盖');
 w.write({ section: '这些人', content: '123456789 用户A：+8 — 今天聊了很久' });
 const rel = md().split('## 这些人')[1];
-ok('同 QQ 只留一行', (rel.match(/123456789/g) ?? []).length === 1);
+ok('同 ID 只留一行', (rel.match(/123456789/g) ?? []).length === 1);
 ok('分数被更新', rel.includes('+8 — 今天聊了很久'));
 
 console.log('memory-writer: 备份与原子写');
