@@ -1,0 +1,2 @@
+# 纯标准库，无第三方依赖（Python >= 3.11）
+# 读 .zstd 压缩会话时需要系统里有 zstd 命令：apt install zstd / brew install zstd

@@ -1,0 +1,10 @@
+data/
+node_modules/
+__pycache__/
+*.pyc
+*.zstd
+*.log
+*.jsonl
+.env
+.env.*
+*.tmp

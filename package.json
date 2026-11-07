@@ -1,0 +1,24 @@
+{
+  "name": "three-stage-prompt",
+  "version": "0.1.0",
+  "description": "三段式 Prompt + 前缀缓存：把聊天机器人单请求成本降 90%",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "demo": "node demo.js",
+    "test": "node tests/test_prompt_and_parser.mjs && node tests/test_memory_writer.mjs"
+  },
+  "files": [
+    "lib",
+    "docs",
+    "examples",
+    "demo.js",
+    "tests",
+    "cleanup.sh",
+    "README.md",
+    "LICENSE"
+  ]
+}
