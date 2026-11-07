@@ -69,6 +69,7 @@
 │   └── dsh_report_cache.py     # 按轮/按群拆命中的归因报告（DSH 适配示例）
 ├── docs/INTERFACES.md          # 每个模块的入参/出参/环境变量
 ├── docs/ADAPTER.md             # 接自己的 IM：四个钩子的最小适配层
+├── docs/INTEGRATION.md         # 四阶段生命周期与状态管理（只讲思路，不含接入代码）
 ├── cleanup.sh                  # 开源前脱敏检查（可 --fix）
 ├── package.json                # 仅 Node 内置依赖
 └── requirements.txt            # Python 纯标准库（读 .zstd 需要 zstd 命令）
