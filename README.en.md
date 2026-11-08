@@ -2,8 +2,8 @@
 
 [中文](README.md) | English
 
-> Same model, same bot. Only the way the prompt is organized changed, and the cost per request
-> dropped from **¥0.0096 to ¥0.00086** (≈ -91%).
+> Same model, same bot. Only the way the prompt is organized changed, and the cost per turn
+> dropped from **¥0.0321 to ¥0.0024** (-92.5%).
 > We did not shrink the model — we stopped re-sending what never changes.
 
 **Built with DeepSeek Harness; developed with assistance from DeepSeek V4.1 Flash.**
@@ -14,19 +14,29 @@
 
 ## 1. Real numbers
 
-Both runs use `deepseek-flash`. Figures come from the platform billing export
-(prices: cache hit ¥0.02/M, cache miss ¥1/M, output ¥4/M).
+Window: V1 = Nov 1–2 (naive layout), V2 = Nov 7–8 (three-stage).
+Both use `deepseek-flash` (V4.1 Flash, build 1017), priced from the platform billing export
+(cache hit ¥0.02/M, cache miss ¥1/M, output ¥4/M). Turn counts are almost identical (161 vs 163),
+so the two columns compare the same workload.
 
-| | V1 (naive) | V2 (three-stage) |
-|---|---|---|
-| Requests | 533 | 38 |
-| Total tokens | 13,951,106 | 271,702 |
-| Cache hit rate | 79.1% | 93.4% |
-| Total cost | ¥5.115342 | ¥0.032774 |
-| **Cost per request** | **¥0.0096** | **¥0.00086** |
+| | V1 (naive) | V2 (three-stage) | Change |
+|---|---|---|---|
+| Turns | 161 | 163 | +1.2% |
+| Requests | 540 | 369 | -31.7% |
+| Total tokens | 14,083,169 | 6,196,913 | -56.0% |
+| Tokens per turn | 87,473 | 38,018 | -56.5% |
+| **Uncached tokens per turn** | **17,672** | **1,029** | **-94.2%** |
+| Cache hit rate | 79.0% | 97.3% | +18.3pp |
+| Total cost | ¥5.1726 | ¥0.3906 | -92.4% |
+| **Cost per turn** | **¥0.0321** | **¥0.0024** | **-92.5%** |
+| Cost per request | ¥0.00958 | ¥0.00106 | -89.0% |
 
-Steady state (excluding the first turn) runs at 96–98% hit rate.
-New input per turn: ~1050 → ~114 tokens.
+Cost per turn drops **92.5%**, and almost all of it comes from uncached input: 17,672 → 1,029.
+Total tokens per turn fall only 56.5% — the win is not a smaller context, it is making the context cacheable.
+
+In steady state (excluding bootstrap and image turns) each turn carries ~260 uncached tokens:
+186 for the turn body, 0–63 for 64-token alignment, ~30 for runtime context.
+Per-day and per-turn detail: [`docs/COMPARISON.md`](docs/COMPARISON.md).
 
 ## 2. Why the naive version is expensive
 
